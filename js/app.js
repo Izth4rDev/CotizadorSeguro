@@ -7,6 +7,29 @@ function Seguro (marca, year, tipo){
     this.tipo = tipo; 
 
 }
+//Realiza la cotizacion con los datos
+Seguro.prototype.cotizarSeguro = function () {
+
+    console.log(`tipo ${this.marca}`);
+
+    let cantidad;
+    const base = 2000;
+    switch(this.marca){
+
+        case '1': cantidad = base *1.15;
+                break;
+        case '2': cantidad = base * 1.05;
+                break; 
+        case '3': cantidad = base *1.32;
+
+        default: 
+        break;
+    }
+    //por cada año mas viejo el segu
+    console.log(`tipo ${this.marca} precio: ${cantidad}`);
+}
+
+
 
 function UI (){
 
@@ -89,10 +112,10 @@ function cotizarSeguro (e){
     const marca = document.querySelector('#marca').value;
     //leer año seleccionado
     const year= document.querySelector('#year').value;
-    console.log(year);
+
     //leer tipo de covertura
     const tipo = document.querySelector('input[name="tipo"]:checked').value; //'input[name="tipo"]:checked' nos permite seleccionar el valor de un radio cuyo name sea = tipo
-    console.log(tipo);
+    
 
     if(marca === '' || year === '' || tipo === ''){
 
@@ -102,7 +125,12 @@ function cotizarSeguro (e){
 
     }
 
-        ui.mostrarMensaje('cotizando.....', 'correcto');
+        ui.mostrarMensaje('cotizando.....', 'existo');
+
+        //instanciar el seguro
+        const seguro = new Seguro(marca, year, tipo);
+        seguro.cotizarSeguro();
+        //Utilizar el 
     
 }
 
